@@ -28,6 +28,26 @@
         { first_name: 'Alice', last_name: 'Carmine' }
       ];
 
+      (function(){
+        mergeSortDrawList();
+      })();
+
+      function mergeSortDrawList() {
+        var container = document.getElementById('container');
+        var firstList = buildList(list1,"First List Unsorted");
+        var secondList = buildList(list2,"Second List Unsorted");
+        var mergedSortedList = mergeCloneSort(list1,list2);
+        var completedList = buildList(mergedSortedList,"Merged and Sorted List");
+
+        var frag = document.createDocumentFragment();
+
+        frag.appendChild(firstList);
+        frag.appendChild(secondList);
+        frag.appendChild(completedList);
+
+        container.appendChild(frag);
+      }
+
       function mergeCloneSort(firstList, secondList) {
         var mergedList = firstList.concat(secondList);
         var mergedListClone = mergedList.slice(0);
@@ -43,14 +63,14 @@
         return 0;
       }
 
-      function buildDomList(sortedList,headertext) {
+      function buildList(list,headertext) {
         var frag = document.createDocumentFragment();
         var header = document.createElement("h1");
         var ul = document.createElement('ul');
 
         header.textContent = headertext;
 
-        sortedList.forEach(function(element) {
+        list.forEach(function(element) {
           var li = document.createElement("li");
           li.textContent = element.last_name;
           ul.appendChild(li);
@@ -61,22 +81,6 @@
 
         return frag;
       }
-
-      (function(){
-        var container = document.getElementById('container');
-        var firstList = buildDomList(list1,"First List Unsorted");
-        var secondList = buildDomList(list2,"Second List Unsorted");
-        var mergedSortedList = mergeCloneSort(list1,list2);
-        var completedList = buildDomList(mergedSortedList,"Merged and Sorted List");
-
-        var frag = document.createDocumentFragment();
-
-        frag.appendChild(firstList);
-        frag.appendChild(secondList);
-        frag.appendChild(completedList);
-
-        container.appendChild(frag);
-      })();
     </script>
 
   </body>

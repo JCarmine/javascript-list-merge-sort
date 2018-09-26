@@ -1,10 +1,14 @@
 <html>
   <head>
     <style>
-      #container{
+      #container {
         font-family: sans-serif;
         color: black;
         list-style: none;
+      }
+
+      #container .header {
+        font-size: 25px;
       }
     </style>
   </head>
@@ -28,10 +32,13 @@
         { first_name: 'Alice', last_name: 'Carmine' }
       ];
 
+      // Self executing function to kick things off
       (function(){
         mergeSortDrawList();
       })();
 
+      // Get reference to the container, build the lists, append to fragment
+      // then append to DOM.
       function mergeSortDrawList() {
         var container = document.getElementById('container');
         var firstList = buildList(list1,"First List Unsorted");
@@ -48,6 +55,7 @@
         container.appendChild(frag);
       }
 
+      // Merge the lists, create a clone, and sort the clone
       function mergeCloneSort(firstList, secondList) {
         var mergedList = firstList.concat(secondList);
         var mergedListClone = mergedList.slice(0);
@@ -55,6 +63,7 @@
         return sortedList;
       }
 
+      // Sorting function
       function compare(a,b) {
         if (a.last_name < b.last_name)
           return -1;
@@ -63,11 +72,15 @@
         return 0;
       }
 
+      // Create a fragment, header div, and ul. Set header text for list. Loop through
+      // lists and create an li for each, append li to ul. Lastly, append the
+      // header and ul to the frag, and return it.
       function buildList(list,headertext) {
         var frag = document.createDocumentFragment();
-        var header = document.createElement("h1");
+        var header = document.createElement("div");
         var ul = document.createElement('ul');
 
+        header.className = "header";
         header.textContent = headertext;
 
         list.forEach(function(element) {

@@ -87,9 +87,9 @@
         header.className = "header";
         header.textContent = headertext;
 
-        list.forEach(function(element) {
+        list.forEach(function(item) {
           var li = document.createElement("li");
-          li.textContent = element.last_name;
+          li.textContent = item.last_name;
           ul.appendChild(li);
         });
 

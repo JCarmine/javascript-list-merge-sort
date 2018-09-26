@@ -8,7 +8,6 @@
         background: #161719;
       }
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   </head>
 
   <body>
@@ -43,6 +42,18 @@
 
       var sortedList = mergedListClone.sort(compare);
       console.log(sortedList);
+
+      var container = document.getElementById('container');
+      var frag = document.createDocumentFragment();
+
+      sortedList.forEach(function(element) {
+        console.log(element.last_name);
+        var el = document.createElement("li");
+        el.textContent = element.last_name;
+        frag.appendChild(el);
+      });
+
+      container.appendChild(frag);
     </script>
 
   </body>

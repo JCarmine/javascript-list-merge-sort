@@ -43,7 +43,7 @@
         return 0;
       }
 
-      function buildDom(sortedList,headertext) {
+      function buildDomList(sortedList,headertext) {
         var frag = document.createDocumentFragment();
         var header = document.createElement("h1");
         var ul = document.createElement('ul');
@@ -64,10 +64,10 @@
 
       (function(){
         var container = document.getElementById('container');
-        var firstList = buildDom(list1,"First List Unsorted");
-        var secondList = buildDom(list2,"Second List Unsorted");
+        var firstList = buildDomList(list1,"First List Unsorted");
+        var secondList = buildDomList(list2,"Second List Unsorted");
         var mergedSortedList = mergeCloneSort(list1,list2);
-        var completedList = buildDom(mergedSortedList,"Merged and Sorted List");
+        var completedList = buildDomList(mergedSortedList,"Merged and Sorted List");
 
         var frag = document.createDocumentFragment();
 

@@ -2,10 +2,9 @@
   <head>
     <style>
       #container{
-        font-family:monospace;
-        font-weight:bold;
-        color: #fff;
-        background: #161719;
+        font-family: sans-serif;
+        color: black;
+        list-style: none;
       }
     </style>
   </head>
@@ -28,8 +27,6 @@
       ];
 
       mergedList = list1.concat(list2);
-      console.log(mergedList);
-
       var mergedListClone = mergedList.slice(0);
 
       function compare(a,b) {
@@ -41,16 +38,19 @@
       }
 
       var sortedList = mergedListClone.sort(compare);
-      console.log(sortedList);
+      
 
       var container = document.getElementById('container');
       var frag = document.createDocumentFragment();
 
+      var header = document.createElement("h1");
+      header.textContent = "Merged and Sorted List";
+      frag.appendChild(header);
+
       sortedList.forEach(function(element) {
-        console.log(element.last_name);
-        var el = document.createElement("li");
-        el.textContent = element.last_name;
-        frag.appendChild(el);
+        var li = document.createElement("li");
+        li.textContent = element.last_name;
+        frag.appendChild(li);
       });
 
       container.appendChild(frag);

@@ -57,9 +57,13 @@
 
       // Merge the lists, create a clone, and sort the clone
       function mergeCloneSort(firstList, secondList) {
+        console.log(firstList);
+        console.log(secondList);
         var mergedList = firstList.concat(secondList);
+        console.log(mergedList);
         var mergedListClone = mergedList.slice(0);
         var sortedList = mergedListClone.sort(compare);
+        console.log(sortedList);
         return sortedList;
       }
 

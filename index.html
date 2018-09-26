@@ -14,20 +14,26 @@
     <div id="container"></div>
 
     <script>
+      "use strict";
+
       var list1 = [
-          { first_name: 'Tim', last_name: 'Zeb' },
-          { first_name: 'Jane', last_name: 'Kollu' },
-          { first_name: 'Wilson', last_name: 'Smith' }
+        { first_name: 'Tim', last_name: 'Zeb' },
+        { first_name: 'Jane', last_name: 'Kollu' },
+        { first_name: 'Wilson', last_name: 'Smith' }
       ];
 
       var list2 = [
-          { first_name: 'Blake', last_name: 'Worden' },
-          { first_name: 'Jeff', last_name: 'Akins' },
-          { first_name: 'Alice', last_name: 'Carmine' }
+        { first_name: 'Blake', last_name: 'Worden' },
+        { first_name: 'Jeff', last_name: 'Akins' },
+        { first_name: 'Alice', last_name: 'Carmine' }
       ];
 
-      mergedList = list1.concat(list2);
-      var mergedListClone = mergedList.slice(0);
+      function mergeCloneSort(firstList, secondList) {
+        var mergedList = firstList.concat(secondList);
+        var mergedListClone = mergedList.slice(0);
+        var sortedList = mergedListClone.sort(compare);
+        return sortedList;
+      }
 
       function compare(a,b) {
         if (a.last_name < b.last_name)
@@ -37,23 +43,39 @@
         return 0;
       }
 
-      var sortedList = mergedListClone.sort(compare);
-      
+      function buildDom(sortedList,headertext) {
+        var frag = document.createDocumentFragment();
+        var header = document.createElement("h1");
+        var ul = document.createElement('ul');
 
-      var container = document.getElementById('container');
-      var frag = document.createDocumentFragment();
+        header.textContent = headertext;
 
-      var header = document.createElement("h1");
-      header.textContent = "Merged and Sorted List";
-      frag.appendChild(header);
+        sortedList.forEach(function(element) {
+          var li = document.createElement("li");
+          li.textContent = element.last_name;
+          ul.appendChild(li);
+        });
 
-      sortedList.forEach(function(element) {
-        var li = document.createElement("li");
-        li.textContent = element.last_name;
-        frag.appendChild(li);
-      });
+        frag.appendChild(header);
+        frag.appendChild(ul);
 
-      container.appendChild(frag);
+        return frag;
+      }
+
+      (function(){
+        var firstList = buildDom(list1,"First List Unsorted");
+        var secondList = buildDom(list2,"Second List Unsorted");
+        var mergedSortedList = mergeCloneSort(list1,list2);
+        var completedList = buildDom(mergedSortedList,"Merged and Sorted List");
+
+        var frag = document.createDocumentFragment();
+
+        frag.appendChild(firstList);
+        frag.appendChild(secondList);
+        frag.appendChild(completedList);
+
+        container.appendChild(frag);
+      })();
     </script>
 
   </body>

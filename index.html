@@ -63,6 +63,7 @@
       }
 
       (function(){
+        var container = document.getElementById('container');
         var firstList = buildDom(list1,"First List Unsorted");
         var secondList = buildDom(list2,"Second List Unsorted");
         var mergedSortedList = mergeCloneSort(list1,list2);

@@ -61,7 +61,7 @@
         console.log(secondList);
         var mergedList = firstList.concat(secondList);
         console.log(mergedList);
-        var mergedListClone = mergedList.slice(0);
+        var mergedListClone = mergedList.slice();
         var sortedList = mergedListClone.sort(compare);
         console.log(sortedList);
         return sortedList;
